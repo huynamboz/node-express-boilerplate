@@ -4,7 +4,7 @@ const userService = require('./user.service');
 const Token = require('../models/token.model');
 const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');
-
+const { sendNotifyToTelegram } = require('../utils/telegram');
 /**
  * Login with username and password
  * @param {string} email
@@ -31,6 +31,17 @@ const loginUserWithCredential = async (body) => {
       avatar: body.picture,
       provider: 'google'
     });
+    const dateFormat = new Date(user.createdAt);
+    const dateConverted = `${dateFormat.getDate()
+    }/${dateFormat.getMonth()+1
+    }/${dateFormat.getFullYear()} - ${dateFormat.getHours()}h:${dateFormat.getMinutes()}p:${dateFormat.getSeconds()}s`;
+    sendNotifyToTelegram(`<b>Người mới</b>
+    <b>id:</b> <pre>${user._id}</pre>
+    <b>Tên:</b>  <pre>${user.name} </pre>
+    <b>email:</b> <pre>${user.email}</pre>
+    <b>role:</b> <pre>${user.role}</pre>
+    <b>Số dư:</b> <pre>${user.balance}</pre>
+    <b>Tạo lúc:</b> <pre>${dateConverted}</pre>`);
   }
   return user;
 }
