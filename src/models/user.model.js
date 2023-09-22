@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
       minlength: 8,
       validate(value) {
@@ -47,6 +47,10 @@ const userSchema = mongoose.Schema(
     balance: {
       type: Number,
       default: 0,
+    },
+    provider: {
+      type: String,
+      default: 'local',
     },
   },
   {

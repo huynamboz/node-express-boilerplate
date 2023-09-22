@@ -19,6 +19,21 @@ const loginUserWithEmailAndPassword = async (email, password) => {
   return user;
 };
 
+const loginUserWithCredential = async (body) => {
+  let user = await userService.getUserByEmail(body.email);
+  if (!user) {
+    user = await userService.createUser({
+      email: body.email,
+      name: body.name,
+      role: 'USER',
+      isEmailVerified: true,
+      balance: 0,
+      avatar: body.picture,
+      provider: 'google'
+    });
+  }
+  return user;
+}
 /**
  * Logout
  * @param {string} refreshToken
@@ -92,6 +107,7 @@ const verifyEmail = async (verifyEmailToken) => {
 
 module.exports = {
   loginUserWithEmailAndPassword,
+  loginUserWithCredential,
   logout,
   refreshAuth,
   resetPassword,

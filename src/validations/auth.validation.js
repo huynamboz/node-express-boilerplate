@@ -16,6 +16,11 @@ const login = {
   }),
 };
 
+const loginGG = {
+  body: Joi.object().keys({
+    credential: Joi.string().required(),
+  }),
+};
 const logout = {
   body: Joi.object().keys({
     refreshToken: Joi.string().required(),
@@ -52,6 +57,7 @@ const verifyEmail = {
 module.exports = {
   register,
   login,
+  loginGG,
   logout,
   refreshTokens,
   forgotPassword,

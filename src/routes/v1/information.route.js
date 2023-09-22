@@ -9,4 +9,5 @@ const router = express.Router();
 router
   .route('/')
   .post(auth('crudInformation'), validate(informationValidation.createInformation), informationController.createInformation)
+  .get(auth('crudInformation'), informationController.getInformations);
 module.exports = router;
