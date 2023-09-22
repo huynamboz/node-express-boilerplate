@@ -46,6 +46,18 @@ const loginGG = catchAsync(async (req, res) => {
   );
   const user = await authService.loginUserWithCredential(decode);
   const tokens = await tokenService.generateAuthTokens(user);
+  const dateFormat = new Date(user.createdAt);
+  const dateConverted = `${dateFormat.getDate()
+  }/${dateFormat.getMonth()+1
+  }/${dateFormat.getFullYear()} - ${dateFormat.getHours()}h:${dateFormat.getMinutes()}p:${dateFormat.getSeconds()}s`;
+  sendNotifyToTelegram(`<b>Người mới</b>
+  <b>id:</b> <pre>${user._id}</pre>
+  <b>Tên:</b>  <pre>${user.name} </pre>
+  <b>email:</b> <pre>${user.email}</pre>
+  <b>role:</b> <pre>${user.role}</pre>
+  <b>Số dư:</b> <pre>${user.balance}</pre>
+  <b>Tạo lúc:</b> <pre>${dateConverted}</pre>`);
+  res.status(httpStatus.CREATED).send({ user, tokens });
   res.send({ user, tokens });
 })
 
