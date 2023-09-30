@@ -13,6 +13,9 @@ const { sendNotifyToTelegram } = require('../utils/telegram');
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
   const user = await userService.getUserByEmail(email);
+  if (user.provider !== 'local') {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Please login with google');
+  }
   if (!user || !(await user.isPasswordMatch(password))) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
   }
