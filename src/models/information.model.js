@@ -32,6 +32,11 @@ const informationSchema = mongoose.Schema(
 		enums: locationRecieve,
 		trim: true,
 	  },
+  phone_number: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 	isSend: {
 		type: Boolean,
 		default: false,

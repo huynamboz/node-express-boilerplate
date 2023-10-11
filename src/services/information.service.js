@@ -8,6 +8,7 @@ const { Information } = require('../models');
 const createInformation = async (inforBody) => {
 	return Information.create(inforBody);
   };
+
 const queryInformations = async (filter, options) => {
 	const informations = await Information.paginate(filter, options);
 	return informations;

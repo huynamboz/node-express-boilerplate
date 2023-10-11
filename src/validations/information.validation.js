@@ -6,6 +6,7 @@ const createInformation = {
 		birthday: Joi.string().required(),
 		gender: Joi.string().required().valid('nam', 'nữ'),
 		location: Joi.string().required().valid('telegram', 'zalo'),
+    phone_number: Joi.string().required(),
 		isSend: Joi.boolean().default(false),
 	}),
   };

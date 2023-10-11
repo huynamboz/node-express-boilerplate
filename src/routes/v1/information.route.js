@@ -10,4 +10,8 @@ router
   .route('/')
   .post(auth('crudInformation'), validate(informationValidation.createInformation), informationController.createInformation)
   .get(auth('crudInformation'), informationController.getInformations);
+
+router
+  .route('/all')
+  .get(auth('admin'), informationController.getAllInformations);
 module.exports = router;

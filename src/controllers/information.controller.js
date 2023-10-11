@@ -33,13 +33,23 @@ const createInformation = catchAsync(async (req, res) => {
 	<b>Tạo lúc:</b> <pre>${dateConverted}</pre>`);
 	res.status(httpStatus.CREATED).send(infor);
   });
+
 const getInformations = catchAsync(async (req, res) => {
 	const filter = { user: req.user.id };
 	const options = pick(req.query, ['sortBy', 'limit', 'page']);
 	const result = await informationService.queryInformations(filter, options);
 	res.send(result);
 });
+
+const getAllInformations = catchAsync(async (req, res) => {
+  const filter = {};
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await informationService.queryInformations(filter, options);
+  res.send(result);
+});
+
   module.exports = {
 	createInformation,
-	getInformations
+	getInformations,
+  getAllInformations
   };
