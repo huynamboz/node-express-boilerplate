@@ -29,6 +29,7 @@ const createInformation = catchAsync(async (req, res) => {
 	<b>Ngày sinh:</b> <pre>${infor.birthday}</pre>
 	<b>Giới tính:</b> <pre>${infor.gender}</pre>
 	<b>Nhận bằng:</b> <pre>${infor.location}</pre>
+	<b>SDT nhận:</b> <pre>${infor.phone_number}</pre>
 	<b>Số dư:</b> <pre>${user.balance}</pre>
 	<b>Tạo lúc:</b> <pre>${dateConverted}</pre>`);
 	res.status(httpStatus.CREATED).send(infor);
