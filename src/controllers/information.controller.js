@@ -24,7 +24,7 @@ const createInformation = catchAsync(async (req, res) => {
 	const dateConverted = `${dateFormat.getDate()}/${dateFormat.getMonth()+1}/${dateFormat.getFullYear()} 
 	- ${dateFormat.getHours()}h:${dateFormat.getMinutes()}p:${dateFormat.getSeconds()}s`;
 	sendNotifyToTelegram(`<b>-- User gửi thông tin mới -- </b>
-	<b>Tên:</b>  <pre>${user.name} </pre>
+	<b>Tên:</b>  <pre>${infor.name} </pre>
 	<b>Email:</b>  <pre>${user.email} </pre>
 	<b>Ngày sinh:</b> <pre>${infor.birthday}</pre>
 	<b>Giới tính:</b> <pre>${infor.gender}</pre>
